@@ -304,7 +304,16 @@ function install_prepare_software_on_android()
     #安装vim
     tar -zxvf ~/.vimplus/vim-9.0.0619.tar.gz -C ~/
     cd ~/vim-9.0.0619
-    ./configure --with-features=huge --enable-python3interp --enable-rubyinterp --enable-luainterp --enable-perlinterp --with-python3-config-dir=$PREFIX/lib/python3 --enable-multibyte --enable-cscope --prefix=$HOME/local
+   # ./configure --with-features=huge --enable-python3interp --enable-rubyinterp --enable-luainterp --enable-perlinterp --with-python3-config-dir=$PREFIX/lib/python3 --enable-multibyte --enable-cscope --prefix=$HOME/local
+   ./configure CFLAGS='-target aarch64-linux-android33' \
+  --with-features=huge \
+  --enable-python3interp \
+  --with-python3-config-dir=$PREFIX/lib/python3 \
+  --enable-multibyte \
+  --enable-cscope \
+  --prefix=$HOME/local \
+  --with-tlib=ncursesw
+  
     make -j8
     make install 
     #创建链接
